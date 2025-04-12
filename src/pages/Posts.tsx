@@ -4,37 +4,55 @@ import Navbar from "@/components/layout/Navbar";
 import Sidebar from "@/components/layout/Sidebar";
 import { Button } from "@/components/ui/button";
 import ContentCard from "@/components/common/ContentCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDatabase, Post } from "@/contexts/DatabaseContext";
+import { useLocation, useNavigate } from "react-router-dom";
+import { PlusCircle, Loader2 } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Posts = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
+  const { posts, fetchPosts, isLoading } = useDatabase();
   const [activeTab, setActiveTab] = useState<'compose' | 'published' | 'scheduled' | 'drafts'>('compose');
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
 
-  const samplePosts = [
-    {
-      content: "Check out our newest product line, just launched today! #NewProduct #Innovation",
-      platforms: ['facebook', 'twitter', 'instagram'] as const,
-      status: 'published' as const,
-      date: "Apr 11, 2025",
-      stats: {
-        likes: 245,
-        comments: 32,
-        shares: 18
-      }
-    },
-    {
-      content: "Join our upcoming webinar on social media marketing strategies for 2025.",
-      image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=2574&auto=format&fit=crop",
-      platforms: ['linkedin', 'facebook'] as const,
-      status: 'scheduled' as const,
-      date: "Apr 15, 2025",
-      time: "2:00 PM"
-    },
-    {
-      content: "Looking for feedback on our new website design. What do you think?",
-      platforms: ['twitter', 'linkedin'] as const,
-      status: 'draft' as const
+  // Get activeTab from location state if available
+  useEffect(() => {
+    if (location.state?.activeTab) {
+      setActiveTab(location.state.activeTab);
     }
-  ];
+  }, [location.state]);
+
+  // Fetch posts when component mounts
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchPosts();
+    }
+  }, [isAuthenticated, fetchPosts]);
+
+  // Filter posts based on active tab
+  useEffect(() => {
+    if (posts.length > 0) {
+      if (activeTab === 'published') {
+        setFilteredPosts(posts.filter(post => post.status === 'published'));
+      } else if (activeTab === 'scheduled') {
+        setFilteredPosts(posts.filter(post => post.status === 'scheduled'));
+      } else if (activeTab === 'drafts') {
+        setFilteredPosts(posts.filter(post => post.status === 'draft'));
+      } else {
+        setFilteredPosts([]);
+      }
+    } else {
+      setFilteredPosts([]);
+    }
+  }, [posts, activeTab]);
+
+  const handleEditPost = (postId: string) => {
+    // Handle post editing here
+    navigate('/posts', { state: { activeTab: 'compose', editPostId: postId } });
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -45,6 +63,12 @@ const Posts = () => {
           <div className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">Posts</h2>
+              {activeTab !== 'compose' && (
+                <Button onClick={() => setActiveTab('compose')}>
+                  <PlusCircle className="h-4 w-4 mr-2" />
+                  Create Post
+                </Button>
+              )}
             </div>
 
             <div className="flex border-b">
@@ -80,18 +104,36 @@ const Posts = () => {
 
             {activeTab === 'compose' ? (
               <PostCreator />
-            ) : (
+            ) : isLoading ? (
+              <div className="flex justify-center items-center py-12">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+              </div>
+            ) : filteredPosts.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {samplePosts
-                  .filter(post => {
-                    if (activeTab === 'published') return post.status === 'published';
-                    if (activeTab === 'scheduled') return post.status === 'scheduled';
-                    if (activeTab === 'drafts') return post.status === 'draft';
-                    return true;
-                  })
-                  .map((post, index) => (
-                    <ContentCard key={index} {...post} />
-                  ))}
+                {filteredPosts.map((post) => (
+                  <ContentCard 
+                    key={post.id} 
+                    {...post} 
+                    onEdit={() => handleEditPost(post.id)}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12 bg-white rounded-lg border shadow-sm">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+                  <PlusCircle className="h-8 w-8 text-gray-400" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">No {activeTab} posts yet</h3>
+                <p className="text-muted-foreground max-w-md mx-auto mb-6">
+                  {activeTab === 'published' 
+                    ? "You haven't published any posts yet. Create and publish your first post."
+                    : activeTab === 'scheduled'
+                    ? "You don't have any scheduled posts. Schedule posts to be published later."
+                    : "You don't have any draft posts. Save your work in progress as drafts."}
+                </p>
+                <Button onClick={() => setActiveTab('compose')}>
+                  Create New Post
+                </Button>
               </div>
             )}
           </div>

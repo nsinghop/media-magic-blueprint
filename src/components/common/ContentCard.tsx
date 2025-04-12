@@ -29,6 +29,7 @@ interface ContentCardProps {
     comments?: number;
     shares?: number;
   };
+  onEdit?: () => void;
 }
 
 const PlatformIcon = ({ platform }: { platform: SocialPlatform }) => {
@@ -40,22 +41,22 @@ const PlatformIcon = ({ platform }: { platform: SocialPlatform }) => {
   };
   
   const classes: Record<SocialPlatform, string> = {
-    facebook: "platform-facebook",
-    twitter: "platform-twitter",
-    instagram: "platform-instagram",
-    linkedin: "platform-linkedin"
+    facebook: "text-blue-600",
+    twitter: "text-sky-500",
+    instagram: "text-pink-600",
+    linkedin: "text-blue-700"
   };
   
   return (
-    <div className={`platform-icon ${classes[platform]}`}>
+    <div className={`platform-icon flex items-center justify-center h-6 w-6 rounded-full bg-white shadow-sm ${classes[platform]}`}>
       {icons[platform]}
     </div>
   );
 };
 
-const ContentCard = ({ content, image, platforms, status, date, time, stats }: ContentCardProps) => {
+const ContentCard = ({ content, image, platforms, status, date, time, stats, onEdit }: ContentCardProps) => {
   return (
-    <div className="social-content-card overflow-hidden">
+    <div className="social-content-card bg-white rounded-lg border shadow-sm overflow-hidden">
       <div className="p-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex -space-x-2">
@@ -126,7 +127,12 @@ const ContentCard = ({ content, image, platforms, status, date, time, stats }: C
                 <span>{stats.shares}</span>
               </div>
             )}
-            <Button variant="ghost" size="sm" className="ml-auto h-6">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="ml-auto h-6"
+              onClick={onEdit}
+            >
               <Edit2 className="h-3 w-3 mr-1" />
               <span>Edit</span>
             </Button>
