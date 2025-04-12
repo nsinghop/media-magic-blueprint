@@ -20,7 +20,7 @@ export type SocialPlatform = 'facebook' | 'twitter' | 'instagram' | 'linkedin';
 interface ContentCardProps {
   content: string;
   image?: string;
-  platforms: SocialPlatform[];
+  platforms: readonly SocialPlatform[] | SocialPlatform[]; // Updated to accept readonly arrays
   status: 'draft' | 'scheduled' | 'published';
   date?: string;
   time?: string;
