@@ -1,5 +1,4 @@
-
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect, useCallback } from 'react';
 import { SocialPlatform } from '@/components/common/ContentCard';
 import { useAuth } from './AuthContext';
 import { toast } from '@/hooks/use-toast';
@@ -65,27 +64,7 @@ export function DatabaseProvider({ children }: { children: ReactNode }) {
   const [freelancers, setFreelancers] = useState<FreelancerProfile[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Load data from localStorage on init
-  useEffect(() => {
-    if (isAuthenticated) {
-      const storedPosts = localStorage.getItem('socialbox_posts');
-      if (storedPosts) {
-        setPosts(JSON.parse(storedPosts));
-      }
-      
-      fetchTrends();
-      fetchFreelancers();
-    }
-  }, [isAuthenticated]);
-
-  // Save posts to localStorage when they change
-  useEffect(() => {
-    if (posts.length > 0) {
-      localStorage.setItem('socialbox_posts', JSON.stringify(posts));
-    }
-  }, [posts]);
-
-  const fetchPosts = async () => {
+  const fetchPosts = useCallback(async () => {
     setIsLoading(true);
     try {
       // Simulate API call
@@ -93,7 +72,9 @@ export function DatabaseProvider({ children }: { children: ReactNode }) {
       
       // Use stored posts or initial mock data if none exist
       const storedPosts = localStorage.getItem('socialbox_posts');
-      if (!storedPosts) {
+      if (storedPosts) {
+        setPosts(JSON.parse(storedPosts));
+      } else {
         const mockPosts: Post[] = [
           {
             id: '1',
@@ -130,6 +111,7 @@ export function DatabaseProvider({ children }: { children: ReactNode }) {
           }
         ];
         setPosts(mockPosts);
+        localStorage.setItem('socialbox_posts', JSON.stringify(mockPosts));
       }
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -141,13 +123,13 @@ export function DatabaseProvider({ children }: { children: ReactNode }) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  const fetchTrends = async () => {
+  const fetchTrends = useCallback(async () => {
     setIsLoading(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1200));
+      await new Promise(resolve => setTimeout(resolve, 1000));
       
       const mockTrends: SocialTrend[] = [
         {
@@ -199,13 +181,13 @@ export function DatabaseProvider({ children }: { children: ReactNode }) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  const fetchFreelancers = async () => {
+  const fetchFreelancers = useCallback(async () => {
     setIsLoading(true);
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 800));
       
       const mockFreelancers: FreelancerProfile[] = [
         {
@@ -276,7 +258,19 @@ export function DatabaseProvider({ children }: { children: ReactNode }) {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchPosts();
+    fetchTrends();
+    fetchFreelancers();
+  }, [fetchPosts, fetchTrends, fetchFreelancers]);
+
+  useEffect(() => {
+    if (posts.length > 0) {
+      localStorage.setItem('socialbox_posts', JSON.stringify(posts));
+    }
+  }, [posts]);
 
   const createPost = async (postData: Omit<Post, 'id' | 'createdAt' | 'updatedAt'>) => {
     setIsLoading(true);

@@ -25,14 +25,14 @@ const DashboardOverview = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchPosts();
-      fetchTrends();
-    }
-  }, [isAuthenticated, fetchPosts, fetchTrends]);
+    fetchPosts();
+    fetchTrends();
+  }, [fetchPosts, fetchTrends]);
 
   useEffect(() => {
-    setRecentPosts(posts.slice(0, 3));
+    if (posts.length) {
+      setRecentPosts(posts.slice(0, 3));
+    }
   }, [posts]);
 
   const handleCreatePost = () => {

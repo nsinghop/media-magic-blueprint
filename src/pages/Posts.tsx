@@ -17,6 +17,7 @@ const Posts = () => {
   const { posts, fetchPosts, isLoading } = useDatabase();
   const [activeTab, setActiveTab] = useState<'compose' | 'published' | 'scheduled' | 'drafts'>('compose');
   const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
+  const [initialLoadComplete, setInitialLoadComplete] = useState(false);
 
   // Get activeTab from location state if available
   useEffect(() => {
@@ -27,10 +28,10 @@ const Posts = () => {
 
   // Fetch posts when component mounts
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchPosts();
-    }
-  }, [isAuthenticated, fetchPosts]);
+    fetchPosts().then(() => {
+      setInitialLoadComplete(true);
+    });
+  }, [fetchPosts]);
 
   // Filter posts based on active tab
   useEffect(() => {
@@ -50,7 +51,6 @@ const Posts = () => {
   }, [posts, activeTab]);
 
   const handleEditPost = (postId: string) => {
-    // Handle post editing here
     navigate('/posts', { state: { activeTab: 'compose', editPostId: postId } });
   };
 
@@ -104,7 +104,7 @@ const Posts = () => {
 
             {activeTab === 'compose' ? (
               <PostCreator />
-            ) : isLoading ? (
+            ) : isLoading && !initialLoadComplete ? (
               <div className="flex justify-center items-center py-12">
                 <Loader2 className="h-8 w-8 animate-spin text-primary" />
               </div>
