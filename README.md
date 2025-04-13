@@ -1,11 +1,11 @@
 
-# SocialBox - All-In-One Social Media Management Platform
+# viraLink - All-In-One Social Media Management Platform
 
-![SocialBox](https://api.dicebear.com/7.x/identicon/svg?seed=socialbox&backgroundColor=0891b2&radius=50)
+![viraLink](https://api.dicebear.com/7.x/identicon/svg?seed=viralink&backgroundColor=0891b2&radius=50)
 
 ## Overview
 
-SocialBox is a comprehensive social media management platform that helps individuals and businesses streamline their social media presence across multiple platforms. With AI-powered content creation, scheduling capabilities, and analytics tracking, SocialBox makes managing your social media strategy more efficient and effective.
+viraLink is a comprehensive social media management platform that helps individuals and businesses streamline their social media presence across multiple platforms. With AI-powered content creation, scheduling capabilities, and analytics tracking, viraLink makes managing your social media strategy more efficient and effective.
 
 ## Tech Stack
 
@@ -80,8 +80,8 @@ SocialBox is a comprehensive social media management platform that helps individ
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/socialbox.git
-cd socialbox
+git clone https://github.com/yourusername/viraLink.git
+cd viraLink
 ```
 
 2. Install dependencies:
@@ -141,7 +141,7 @@ yarn dev
 
 ## Contributing
 
-We welcome contributions to SocialBox! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to submit pull requests, report bugs, or suggest features.
+We welcome contributions to viraLink! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to submit pull requests, report bugs, or suggest features.
 
 ## License
 
@@ -156,4 +156,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Made with ❤️ by the SocialBox Team
+Made with ❤️ by the viraLink Team
