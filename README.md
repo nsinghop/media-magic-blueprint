@@ -7,6 +7,39 @@
 
 SocialBox is a comprehensive social media management platform that helps individuals and businesses streamline their social media presence across multiple platforms. With AI-powered content creation, scheduling capabilities, and analytics tracking, SocialBox makes managing your social media strategy more efficient and effective.
 
+## Tech Stack
+
+<div style="display: flex; gap: 20px; margin: 20px 0; flex-wrap: wrap;">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" alt="React Router" />
+  <img src="https://img.shields.io/badge/Google_Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white" alt="Google Gemini" />
+  <img src="https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcnui&logoColor=white" alt="shadcn/ui" />
+</div>
+
+- **React & TypeScript**: Frontend framework and type safety
+- **Tailwind CSS**: Utility-first CSS framework for styling
+- **React Router Dom**: Navigation and routing
+- **Lucide React**: Beautiful, consistent icon set
+- **shadcn/ui**: High-quality UI components
+- **React Markdown**: Renders AI-generated content beautifully
+- **Sonner**: Modern, minimalist toast notifications
+- **Recharts**: Powerful, composable charting library
+- **Google Gemini**: Fine-tuned AI model for content generation
+- **Tanstack React Query**: Data fetching and state management
+
+## Application Flow
+
+![Application Flow](https://mermaid.ink/img/pako:eNqFksFqwzAMhl_F-NQO2r5AT8tgY4OxwwajrVlDaxPbMl0a-t67kzpt0m6Tk9D_fRJCSGGYjFIQIXnx-nXyxYxRPOUmITMR3fCxXXcuRK-nqvOVL2xjJl6pNKl8s3KVJ6oZbVS2Jms3V2zXSqvJXu7JmJE6P-u6pZbclFTRkpbPbXnvOKUDx1Qzn8wMJw0xqEpeDaU4z17rzkbfMQVm-8M-wvhQTWCRoG9EGgTZ0vM-ChCZbMuqBzGNnUhDU6O2YIZmJPTBdmRhHHVDMuQ4gd2vW9eC2DQlBo7hVKhNQxg2X33fkznwD1GwE1dE3bfmj-Js7Mx_GYvLvGiuiurJPM6t-QNjZJ38?type=png)
+
+1. **Authentication**: Users connect their social media accounts securely
+2. **Content Creation**: Craft posts with AI assistance or manually
+3. **Scheduling**: Set posts to publish at optimal times
+4. **Analytics**: Track performance metrics across platforms
+5. **Trends**: Discover what's popular to inform content strategy
+6. **Freelancer Marketplace**: Connect with or offer social media expertise
+
 ## Features
 
 ### Platform Management
