@@ -1,73 +1,126 @@
-# Welcome to your Lovable project
 
-## Project info
+# SocialBox - All-In-One Social Media Management Platform
 
-**URL**: https://lovable.dev/projects/3c782939-4690-48e4-8314-93f2ca93a967
+![SocialBox](https://api.dicebear.com/7.x/identicon/svg?seed=socialbox&backgroundColor=0891b2&radius=50)
 
-## How can I edit this code?
+## Overview
 
-There are several ways of editing your application.
+SocialBox is a comprehensive social media management platform that helps individuals and businesses streamline their social media presence across multiple platforms. With AI-powered content creation, scheduling capabilities, and analytics tracking, SocialBox makes managing your social media strategy more efficient and effective.
 
-**Use Lovable**
+## Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/3c782939-4690-48e4-8314-93f2ca93a967) and start prompting.
+### Platform Management
+- Connect and manage multiple social media accounts in one place
+- Currently supports: Facebook, Twitter, Instagram, and LinkedIn
+- Easily switch between platforms or post to multiple platforms simultaneously
 
-Changes made via Lovable will be committed automatically to this repo.
+### Content Creation & Scheduling
+- Create posts with rich text and media
+- AI-powered content suggestions and improvements
+- Schedule posts for optimal engagement times
+- Save drafts for later refinement
+- View all scheduled, published, and draft posts in one dashboard
 
-**Use your preferred IDE**
+### Analytics & Performance Tracking
+- Track engagement metrics across all platforms
+- Visualize performance with easy-to-understand charts
+- Monitor growth trends over time
+- Compare performance across different platforms
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Social Media Trends
+- Stay updated with the latest trends across different platforms
+- Discover trending hashtags and topics
+- Get content ideas based on what's currently popular
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Freelancer Marketplace
+- Hire expert social media professionals for specific projects
+- Browse freelancers by skills, ratings, and rates
+- Apply as a freelancer to offer your social media expertise
 
-Follow these steps:
+## Getting Started
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Installation
 
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/socialbox.git
+cd socialbox
 ```
 
-**Edit a file directly in GitHub**
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. Start the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-**Use GitHub Codespaces**
+4. Open your browser and navigate to `http://localhost:5173`
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Usage Guide
 
-## What technologies are used for this project?
+### Connecting Your Social Media Accounts
 
-This project is built with:
+1. Navigate to the "Platforms" section from the sidebar
+2. Click "Connect Account" for the platform you want to add
+3. Follow the authentication steps for each platform
+4. Once connected, your account will appear in the connected platforms list
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Creating and Publishing Content
 
-## How can I deploy this project?
+1. Navigate to the "Posts" section from the sidebar
+2. Click on the "Compose" tab
+3. Write your post content in the editor
+4. Add images or other media if desired
+5. Select which platforms to publish to
+6. Choose to publish immediately, schedule for later, or save as draft
+7. Use the AI assistant to help generate or improve your content
 
-Simply open [Lovable](https://lovable.dev/projects/3c782939-4690-48e4-8314-93f2ca93a967) and click on Share -> Publish.
+### Viewing Your Content
 
-## Can I connect a custom domain to my Lovable project?
+1. Navigate to the "Posts" section
+2. Use the tabs to switch between Published, Scheduled, and Draft posts
+3. Click on any post to view details or make edits
 
-Yes it is!
+### Checking Analytics
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Navigate to the "Analytics" section
+2. View overall performance metrics
+3. Filter by date range or platform
+4. Analyze engagement trends and audience growth
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Finding or Becoming a Freelancer
+
+1. Navigate to the "Freelancers" section
+2. Choose "Hire a Freelancer" to browse available professionals
+3. Or select "Apply as a Freelancer" to create your profile and offer services
+4. Filter freelancers by skills, rates, and ratings
+
+## Contributing
+
+We welcome contributions to SocialBox! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to submit pull requests, report bugs, or suggest features.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Built with React, TypeScript, and Tailwind CSS
+- Utilizes shadcn/ui for component design
+- Firebase for authentication and data storage
+- Thanks to all our contributors and users!
+
+---
+
+Made with ❤️ by the SocialBox Team
